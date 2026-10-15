@@ -1,0 +1,809 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, My Love 💗</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --pink: #ff72ad;
+  --light-pink: #ffd6e8;
+  --purple: #b7a1ff;
+  --dark: #21142e;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  background:
+    radial-gradient(circle at top, #57305f, transparent 55%),
+    linear-gradient(135deg, #170f29, #321832, #20142f);
+  color: white;
+  overflow-x: hidden;
+  text-align: center;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: inherit;
+  transition: .25s;
+}
+
+button:hover {
+  transform: translateY(-3px) scale(1.04);
+  filter: brightness(1.1);
+}
+
+button:active {
+  transform: scale(.96);
+}
+
+#stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  color: white;
+  animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: .2; transform: scale(.7); }
+  to { opacity: 1; transform: scale(1.2); }
+}
+
+.heart {
+  position: fixed;
+  bottom: -50px;
+  z-index: 1;
+  pointer-events: none;
+  animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-115vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 28px 16px;
+}
+
+.page {
+  display: none;
+  width: 100%;
+  max-width: 650px;
+  animation: appear .7s ease;
+}
+
+.page.active {
+  display: block;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+  color: #ffb6d5;
+  font-size: clamp(28px, 7vw, 46px);
+  margin: 12px 0;
+  text-shadow: 0 0 22px #ff72ad66;
+}
+
+h2 {
+  color: #ffd2e5;
+  font-size: 27px;
+  margin-bottom: 16px;
+}
+
+p {
+  color: #f5dfef;
+  line-height: 1.8;
+  margin: 12px auto;
+}
+
+.subtitle {
+  color: #e8cde8;
+  font-size: 16px;
+}
+
+.card {
+  background: #ffffff0c;
+  border: 1px solid #ffffff20;
+  border-radius: 28px;
+  padding: 28px 22px;
+  box-shadow: 0 15px 60px #00000035;
+  backdrop-filter: blur(10px);
+}
+
+.btn {
+  padding: 14px 24px;
+  margin: 10px 5px;
+  border-radius: 50px;
+  color: #49213d;
+  background: linear-gradient(135deg, #ffc6df, #ff80b7);
+  box-shadow: 0 5px 22px #ff72ad35;
+}
+
+.btn.secondary {
+  color: white;
+  background: #ffffff15;
+  border: 1px solid #ffffff35;
+}
+
+.small {
+  font-size: 13px;
+  color: #cbb5d2;
+}
+
+/* Animated teddy bear */
+.bear {
+  font-size: 105px;
+  display: inline-block;
+  margin: 5px;
+  filter: drop-shadow(0 10px 20px #ff72ad35);
+  animation: bearBounce 2s ease-in-out infinite;
+}
+
+@keyframes bearBounce {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-13px) rotate(3deg); }
+}
+
+.bear.small-bear {
+  font-size: 70px;
+}
+
+/* Birthday cake */
+.cake-area {
+  padding: 18px 0 8px;
+}
+
+.cake {
+  position: relative;
+  width: 180px;
+  height: 125px;
+  margin: 35px auto 10px;
+}
+
+.cake-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 180px;
+  height: 48px;
+  border-radius: 50%;
+  background: #ffb6d5;
+  border: 4px solid #ffe3ef;
+  z-index: 2;
+}
+
+.cake-body {
+  position: absolute;
+  top: 22px;
+  width: 180px;
+  height: 82px;
+  background: linear-gradient(90deg, #f477a9, #ffb6d5, #f477a9);
+  border-radius: 0 0 18px 18px;
+  border-bottom: 8px solid #d95791;
+}
+
+.icing {
+  position: absolute;
+  top: 38px;
+  left: 0;
+  width: 180px;
+  height: 23px;
+  z-index: 3;
+  display: flex;
+  justify-content: space-around;
+}
+
+.icing span {
+  width: 18px;
+  height: 25px;
+  border-radius: 0 0 12px 12px;
+  background: #fff0f7;
+}
+
+.candle {
+  position: absolute;
+  bottom: 99px;
+  left: 82px;
+  width: 16px;
+  height: 39px;
+  background: repeating-linear-gradient(
+    135deg, #fff 0 6px, #ff78b0 6px 12px
+  );
+  border-radius: 4px;
+  z-index: 4;
+}
+
+.flame {
+  position: absolute;
+  top: -23px;
+  left: 2px;
+  width: 12px;
+  height: 20px;
+  background: #ffdf75;
+  border-radius: 50% 50% 40% 40%;
+  box-shadow: 0 0 20px #ffca59;
+  animation: flame .5s infinite alternate;
+}
+
+.flame.off {
+  display: none;
+}
+
+@keyframes flame {
+  to { transform: scale(.8) rotate(8deg); }
+}
+
+.letter {
+  text-align: left;
+  white-space: pre-line;
+  min-height: 170px;
+  padding: 18px;
+  background: #ffffff09;
+  border: 1px solid #ffffff18;
+  border-radius: 18px;
+  line-height: 1.9;
+  color: #ffe2ef;
+}
+
+/* Gift box */
+.gift-area {
+  margin: 28px auto;
+  width: 170px;
+  height: 170px;
+  position: relative;
+  cursor: pointer;
+  animation: giftBounce 1.8s infinite;
+}
+
+@keyframes giftBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.gift-box {
+  position: absolute;
+  width: 150px;
+  height: 105px;
+  bottom: 5px;
+  left: 10px;
+  background: linear-gradient(135deg, #ff72ad, #d94c94);
+  border-radius: 8px;
+  box-shadow: 0 12px 30px #00000030;
+}
+
+.gift-ribbon {
+  position: absolute;
+  height: 105px;
+  width: 25px;
+  background: #ffe1a6;
+  left: 62px;
+  top: 0;
+}
+
+.gift-lid {
+  position: absolute;
+  width: 170px;
+  height: 32px;
+  left: 0;
+  bottom: 95px;
+  background: #ffadd0;
+  border-radius: 8px;
+  transition: .7s;
+  z-index: 2;
+}
+
+.gift-lid::before,
+.gift-lid::after {
+  content: "";
+  position: absolute;
+  bottom: 18px;
+  width: 36px;
+  height: 25px;
+  border: 9px solid #ffe1a6;
+  border-radius: 50%;
+}
+
+.gift-lid::before { left: 37px; transform: rotate(25deg); }
+.gift-lid::after { right: 37px; transform: rotate(-25deg); }
+
+.gift-area.open .gift-lid {
+  transform: translateY(-80px) rotate(-12deg);
+}
+
+.gift-area.open {
+  animation: none;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.final-message {
+  animation: appear 1s ease;
+}
+
+.final-message .big-heart {
+  font-size: 65px;
+  animation: heartBeat 1s infinite;
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+#confetti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.footer {
+  font-size: 12px;
+  color: #c9a9ca;
+  margin-top: 22px;
+}
+
+@media (max-width: 480px) {
+  .card { padding: 24px 16px; }
+  .bear { font-size: 90px; }
+  .letter { padding: 14px; }
+}
+</style>
+</head>
+
+<body>
+<div id="stars"></div>
+<canvas id="confetti"></canvas>
+
+<main class="container">
+
+  <!-- PAGE 1: Welcome -->
+  <section class="page active" id="page1">
+    <div class="card">
+      <div class="bear">🧸</div>
+      <p class="subtitle">A little surprise made just for you...</p>
+      <h1>Happy Birthday! 🎂</h1>
+      <p>
+        To the sweetest girl in my world 💗<br>
+        I have something special for you.
+      </p>
+      <button class="btn" onclick="goTo(2)">
+        Open Your Surprise 💌
+      </button>
+      <div class="footer">Made with love, just for you ✨</div>
+    </div>
+  </section>
+
+  <!-- PAGE 2: Birthday cake -->
+  <section class="page" id="page2">
+    <div class="card">
+      <div class="bear small-bear">🧸💕</div>
+      <h2>Make a Birthday Wish! 🌟</h2>
+      <p>Close your eyes, make a wish, and blow out the candle!</p>
+
+      <div class="cake-area">
+        <div class="cake">
+          <div class="candle">
+            <div class="flame" id="flame"></div>
+          </div>
+          <div class="cake-body"></div>
+          <div class="cake-top"></div>
+          <div class="icing">
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn" id="wishButton" onclick="blowCandle()">
+        Blow the Candle 🕯️
+      </button>
+      <p id="wishText" class="subtitle"></p>
+      <button class="btn secondary hidden" id="cakeNext" onclick="goTo(3)">
+        Continue 💗
+      </button>
+    </div>
+  </section>
+
+  <!-- PAGE 3: Love letter -->
+  <section class="page" id="page3">
+    <div class="card">
+      <div class="bear small-bear">💌🧸</div>
+      <h2>A Letter for You 💗</h2>
+      <p class="subtitle">There are some things I want you to know...</p>
+      <div class="letter" id="letter"></div>
+      <button class="btn" id="letterButton" onclick="showLetter()">
+        Read My Letter 💌
+      </button>
+      <button class="btn secondary hidden" id="letterNext" onclick="goTo(4)">
+        One More Surprise 🎁
+      </button>
+    </div>
+  </section>
+
+  <!-- PAGE 4: Interactive hearts -->
+  <section class="page" id="page4">
+    <div class="card">
+      <div class="bear">🧸💖</div>
+      <h2>Collect 3 Hearts! 💕</h2>
+      <p>Tap the hearts to collect my love for you!</p>
+
+      <div id="heartGame" style="
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:12px;
+        max-width:300px;
+        margin:25px auto;">
+      </div>
+
+      <p id="heartCount">Hearts collected: 0 / 3</p>
+      <button class="btn hidden" id="heartNext" onclick="goTo(5)">
+        Unlock Your Gift 🎁
+      </button>
+    </div>
+  </section>
+
+  <!-- PAGE 5: Gift -->
+  <section class="page" id="page5">
+    <div class="card">
+      <div class="bear">🧸🎀</div>
+      <h2>Your Final Surprise! 🎁</h2>
+      <p>This little gift is full of love. Tap it to open!</p>
+
+      <div class="gift-area" id="gift" onclick="openGift()">
+        <div class="gift-box">
+          <div class="gift-ribbon"></div>
+        </div>
+        <div class="gift-lid"></div>
+      </div>
+
+      <p id="giftHint" class="subtitle">Tap the gift box 💝</p>
+
+      <div class="final-message hidden" id="finalMessage">
+        <div class="big-heart">💖</div>
+        <h1>I Love You!</h1>
+        <p>
+          Happy Birthday, My Love! 🎂<br>
+          You are my favorite person and my sweetest happiness.
+          Thank you for being you. 💗
+        </p>
+        <p>May your life be filled with love, laughter, and beautiful dreams.</p>
+        <p>Forever cheering for you. 🧸💕</p>
+        <button class="btn" onclick="replay()">Replay Our Story ↻</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+// ========================================
+// PERSONALIZE YOUR WEBSITE HERE
+// ========================================
+
+const GIRL_NAME = "Mayura";
+
+const LOVE_LETTER = `Happy Birthday, ${GIRL_NAME}! 💗
+
+First of all, thank you for being in my life.
+
+Thank you for always smiling and for bringing so much warmth into my world. You make me laugh more, smile more, and feel happier than before.
+
+Even the little moments with you mean so much to me. Your smile can make a difficult day feel better, and your happiness makes me happy too.
+
+I hope this new year of your life brings you beautiful memories, good health, success, and all the happiness you deserve.
+
+I may not always find the perfect words to explain how much you mean to me, but I want you to know that I appreciate you and the love we share.
+
+Keep smiling, keep being yourself, and never forget how special you are to me.
+
+Happy Birthday, my favorite person! 🎂🧸💗
+
+With all my love,
+Your favorite person ❤️`;
+
+// ========================================
+// BACKGROUND STARS AND FLOATING HEARTS
+// ========================================
+
+const stars = document.getElementById("stars");
+
+for (let i = 0; i < 65; i++) {
+  const star = document.createElement("span");
+  star.className = "star";
+  star.textContent = Math.random() > .5 ? "✦" : "·";
+  star.style.left = Math.random() * 100 + "%";
+  star.style.top = Math.random() * 100 + "%";
+  star.style.fontSize = (8 + Math.random() * 12) + "px";
+  star.style.animationDelay = Math.random() * 3 + "s";
+  stars.appendChild(star);
+}
+
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.textContent = ["💗", "💕", "💖", "💘", "✨"][
+    Math.floor(Math.random() * 5)
+  ];
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (15 + Math.random() * 23) + "px";
+  heart.style.animationDuration = (5 + Math.random() * 6) + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 12000);
+}
+
+setInterval(createHeart, 700);
+
+// ========================================
+// PAGE NAVIGATION
+// ========================================
+
+function goTo(pageNumber) {
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.remove("active");
+  });
+
+  document.getElementById("page" + pageNumber).classList.add("active");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+
+  if (pageNumber === 4) createHeartGame();
+}
+
+// ========================================
+// BIRTHDAY CANDLE
+// ========================================
+
+let candleBlown = false;
+
+function blowCandle() {
+  if (candleBlown) return;
+
+  candleBlown = true;
+  document.getElementById("flame").classList.add("off");
+  document.getElementById("wishButton").classList.add("hidden");
+
+  document.getElementById("wishText").textContent =
+    "Your wish is on its way to the stars! ✨💗";
+
+  document.getElementById("cakeNext").classList.remove("hidden");
+  celebrate();
+}
+
+// ========================================
+// LOVE LETTER TYPEWRITER
+// ========================================
+
+let letterStarted = false;
+
+function showLetter() {
+  if (letterStarted) return;
+  letterStarted = true;
+
+  document.getElementById("letterButton").classList.add("hidden");
+
+  const letter = document.getElementById("letter");
+  let index = 0;
+
+  function typeNext() {
+    if (index < LOVE_LETTER.length) {
+      letter.textContent += LOVE_LETTER[index];
+      index++;
+
+      // Keep the newest text visible while typing.
+      letter.scrollTop = letter.scrollHeight;
+      setTimeout(typeNext, 25);
+    } else {
+      document.getElementById("letterNext").classList.remove("hidden");
+    }
+  }
+
+  typeNext();
+}
+
+// ========================================
+// COLLECT 3 HEARTS GAME
+// ========================================
+
+let collected = 0;
+let chosenHearts = new Set();
+
+function createHeartGame() {
+  if (document.getElementById("heartGame").children.length > 0) return;
+
+  const game = document.getElementById("heartGame");
+
+  for (let i = 0; i < 9; i++) {
+    const button = document.createElement("button");
+    button.textContent = "❔";
+    button.style.cssText = `
+      min-height:75px;
+      border-radius:18px;
+      background:#ffffff12;
+      border:1px solid #ffffff25;
+      font-size:30px;
+      color:white;
+    `;
+
+    button.onclick = function() {
+      if (button.dataset.clicked) return;
+      button.dataset.clicked = "yes";
+
+      if (chosenHearts.has(i)) {
+        button.textContent = "💖";
+        button.style.background = "#ff72ad40";
+        collected++;
+        document.getElementById("heartCount").textContent =
+          "Hearts collected: " + collected + " / 3";
+
+        if (collected === 3) {
+          document.getElementById("heartNext").classList.remove("hidden");
+          celebrate();
+        }
+      } else {
+        button.textContent = "✨";
+        button.style.opacity = ".5";
+      }
+    };
+
+    game.appendChild(button);
+  }
+
+  // Randomly choose exactly 3 winning tiles.
+  while (chosenHearts.size < 3) {
+    chosenHearts.add(Math.floor(Math.random() * 9));
+  }
+}
+
+// ========================================
+// FINAL GIFT BOX
+// ========================================
+
+let giftOpened = false;
+
+function openGift() {
+  if (giftOpened) return;
+  giftOpened = true;
+
+  document.getElementById("gift").classList.add("open");
+  document.getElementById("giftHint").textContent =
+    "A little happiness, just for you! 💗";
+
+  setTimeout(() => {
+    document.getElementById("gift").classList.add("hidden");
+    document.getElementById("giftHint").classList.add("hidden");
+    document.getElementById("finalMessage").classList.remove("hidden");
+    celebrate();
+  }, 800);
+}
+
+// ========================================
+// SIMPLE CONFETTI CELEBRATION
+// ========================================
+
+const canvas = document.getElementById("confetti");
+const ctx = canvas.getContext("2d");
+let particles = [];
+let animationRunning = false;
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
+
+function celebrate() {
+  for (let i = 0; i < 110; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: -20 - Math.random() * canvas.height * .4,
+      size: 3 + Math.random() * 5,
+      speed: 2 + Math.random() * 4,
+      drift: (Math.random() - .5) * 3,
+      rotation: Math.random() * 6,
+      color: ["#ff80b7", "#ffd166", "#c9a7ff",
+              "#ffffff", "#ffb6d5"][Math.floor(Math.random() * 5)]
+    });
+  }
+
+  if (!animationRunning) {
+    animationRunning = true;
+    requestAnimationFrame(drawConfetti);
+  }
+}
+
+function drawConfetti() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  particles.forEach(p => {
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rotation);
+    ctx.fillStyle = p.color;
+    ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 1.5);
+    ctx.restore();
+
+    p.y += p.speed;
+    p.x += p.drift;
+    p.rotation += .04;
+  });
+
+  particles = particles.filter(p => p.y < canvas.height + 20);
+
+  if (particles.length > 0) {
+    requestAnimationFrame(drawConfetti);
+  } else {
+    animationRunning = false;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+}
+
+// ========================================
+// REPLAY
+// ========================================
+
+function replay() {
+  letterStarted = false;
+  candleBlown = false;
+  giftOpened = false;
+  collected = 0;
+  chosenHearts = new Set();
+
+  document.getElementById("flame").classList.remove("off");
+  document.getElementById("wishButton").classList.remove("hidden");
+  document.getElementById("wishText").textContent = "";
+  document.getElementById("cakeNext").classList.add("hidden");
+
+  document.getElementById("letter").textContent = "";
+  document.getElementById("letterButton").classList.remove("hidden");
+  document.getElementById("letterNext").classList.add("hidden");
+
+  document.getElementById("heartGame").innerHTML = "";
+  document.getElementById("heartCount").textContent = "Hearts collected: 0 / 3";
+  document.getElementById("heartNext").classList.add("hidden");
+
+  document.getElementById("gift").classList.remove("open", "hidden");
+  document.getElementById("giftHint").classList.remove("hidden");
+  document.getElementById("giftHint").textContent = "Tap the gift box 💝";
+  document.getElementById("finalMessage").classList.add("hidden");
+
+  goTo(1);
+}
+</script>
+</body>
+</html>
